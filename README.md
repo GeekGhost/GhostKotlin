@@ -1,2 +1,0 @@
-# GhostKotlin
-kotlin项目
