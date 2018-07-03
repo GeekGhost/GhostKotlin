@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':multiple-status-views'
+project(':multiple-status-views').projectDir = new File('multiple-status-view')
