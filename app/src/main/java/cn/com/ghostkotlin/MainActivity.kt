@@ -2,7 +2,6 @@ package cn.com.ghostkotlin
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 
 class MainActivity : AppCompatActivity() {
 
@@ -10,6 +9,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.i("TAG","");
     }
 }
