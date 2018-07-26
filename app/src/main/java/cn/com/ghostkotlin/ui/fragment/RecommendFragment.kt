@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.activity_recommend.*
  * </pre>
  */
 class RecommendFragment : BaseFragment(),RecommendContract.View{
-    private var isRefresh = false
 
     private val mPresenter by lazy { RecommendPresenter() }
 

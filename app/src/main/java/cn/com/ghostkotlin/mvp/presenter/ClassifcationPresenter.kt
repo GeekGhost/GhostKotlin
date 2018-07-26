@@ -1,7 +1,7 @@
 package cn.com.ghostkotlin.mvp.presenter
 
 import cn.com.ghostkotlin.base.BasePresenter
-import cn.com.ghostkotlin.mvp.contract.RecommendContract
+import cn.com.ghostkotlin.mvp.contract.ClassifcationContract
 import cn.com.ghostkotlin.mvp.model.VideoModel
 import cn.com.ghostkotlin.net.exception.ExceptionHandle
 
@@ -11,7 +11,7 @@ import cn.com.ghostkotlin.net.exception.ExceptionHandle
  * (数据是 Banner 数据和一页数据组合而成的 HomeBean,查看接口然后在分析就明白了)
  */
 
-class RecommendPresenter : BasePresenter<RecommendContract.View>(), RecommendContract.Presenter {
+class ClassifcationPresenter : BasePresenter<ClassifcationContract.View>(), ClassifcationContract.Presenter {
 
 
     private val videoModel: VideoModel by lazy {
