@@ -6,7 +6,6 @@ import android.view.KeyEvent
 import cn.com.ghostkotlin.base.BaseActivity
 import cn.com.ghostkotlin.mvp.model.bean.TabEntity
 import cn.com.ghostkotlin.ui.fragment.ClassificationFragment
-import cn.com.ghostkotlin.ui.fragment.DiscoverFragment
 import cn.com.ghostkotlin.ui.fragment.MineFragment
 import cn.com.ghostkotlin.ui.fragment.RecommendFragment
 import com.flyco.tablayout.listener.CustomTabEntity
@@ -16,17 +15,16 @@ import java.util.*
 
 class MainActivity : BaseActivity() {
 
-    private val mTitles = arrayOf("精选", "专题", "发现", "我的")
+    private val mTitles = arrayOf("精选", "专题", "我的")
 
     // 未被选中的图标
-    private val mIconUnSelectIds = intArrayOf(R.mipmap.found, R.mipmap.special, R.mipmap.fancy, R.mipmap.my)
+    private val mIconUnSelectIds = intArrayOf(R.mipmap.found, R.mipmap.special, R.mipmap.my)
     // 被选中的图标
-    private val mIconSelectIds = intArrayOf(R.mipmap.found_select, R.mipmap.special_select, R.mipmap.fancy_select, R.mipmap.my_select)
+    private val mIconSelectIds = intArrayOf(R.mipmap.found_select, R.mipmap.special_select, R.mipmap.my_select)
     private val mTabEntities = ArrayList<CustomTabEntity>()
 
     private var mHomeFragment: RecommendFragment? = null
     private var mDiscoveryFragment: ClassificationFragment? = null
-    private var mHotFragment: DiscoverFragment? = null
     private var mMineFragment: MineFragment? = null
 
     //默认为0
@@ -63,6 +61,7 @@ class MainActivity : BaseActivity() {
             }
         })
     }
+
     override fun initData() {
     }
 
@@ -80,31 +79,27 @@ class MainActivity : BaseActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         hideFragments(transaction)
         when (position) {
-            0 // 首页
+            0 // 精选
             -> mHomeFragment?.let {
                 transaction.show(it)
             } ?: RecommendFragment.getInstance(mTitles[position]).let {
                 mHomeFragment = it
                 transaction.add(R.id.fl_container, it, "home")
             }
-            1  //发现
+            1  //专题
             -> mDiscoveryFragment?.let {
                 transaction.show(it)
             } ?: ClassificationFragment.getInstance(mTitles[position]).let {
                 mDiscoveryFragment = it
-                transaction.add(R.id.fl_container, it, "discovery") }
-            2  //热门
-            -> mHotFragment?.let {
-                transaction.show(it)
-            } ?: DiscoverFragment.getInstance(mTitles[position]).let {
-                mHotFragment = it
-                transaction.add(R.id.fl_container, it, "hot") }
-            3 //我的
+                transaction.add(R.id.fl_container, it, "discovery")
+            }
+            2 //我的
             -> mMineFragment?.let {
                 transaction.show(it)
             } ?: MineFragment.getInstance(mTitles[position]).let {
                 mMineFragment = it
-                transaction.add(R.id.fl_container, it, "mine") }
+                transaction.add(R.id.fl_container, it, "mine")
+            }
 
             else -> {
 
@@ -124,7 +119,6 @@ class MainActivity : BaseActivity() {
     private fun hideFragments(transaction: FragmentTransaction) {
         mHomeFragment?.let { transaction.hide(it) }
         mDiscoveryFragment?.let { transaction.hide(it) }
-        mHotFragment?.let { transaction.hide(it) }
         mMineFragment?.let { transaction.hide(it) }
     }
 
