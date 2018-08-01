@@ -1,8 +1,10 @@
 package cn.com.ghostkotlin.api
 
 import cn.com.ghostkotlin.mvp.model.bean.VideoBean
+import cn.com.ghostkotlin.mvp.model.bean.VideoDetailBean
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 /**
  * <pre>
@@ -19,4 +21,14 @@ interface VideoApiService {
      */
     @GET("homePageApi/homePage.do")
     fun getHomePage(): Observable<VideoBean>
+
+    /**
+     * 影片详情
+     *
+     * @param mediaId 影片id
+     * @return
+     */
+    @GET("videoDetailApi/videoDetail.do")
+    fun getVideoInfo(@Query("mediaId") mediaId: String): Observable<VideoDetailBean>
+
 }
