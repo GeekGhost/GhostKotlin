@@ -93,7 +93,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         mRecyclerView.adapter = mAdapter
 
         //设置相关视频 Item 的点击事件
-//        mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
+        mAdapter.setOnItemDetailClick { mPresenter.requestRelatedVideo(it.dataId) }
 
         //状态栏透明和间距处理
         StatusBarUtil.immersive(this)
@@ -197,7 +197,7 @@ class VideoDetailActivity : BaseActivity(), VideoDetailContract.View {
         isTransition = intent.getBooleanExtra(TRANSITION, false)
 
 //        saveWatchVideoHistoryInfo(itemData)
-        mPresenter.requestRelatedVideo("s")
+        mPresenter.requestRelatedVideo("a3a7140d66314cf99e7b40afd37896fa")
     }
 
 

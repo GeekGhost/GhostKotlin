@@ -1,6 +1,5 @@
 package com.hazz.kotlinmvp.mvp.presenter
 
-import android.util.Log
 import cn.com.ghostkotlin.base.BasePresenter
 import cn.com.ghostkotlin.mvp.model.bean.VideoDetailBean
 import cn.com.ghostkotlin.net.exception.ExceptionHandle
@@ -25,10 +24,13 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
     }
 
     override fun requestRelatedVideo(id: String) {
-        val disposable = videoDetailModel.requestRelatedData("a3a7140d66314cf99e7b40afd37896fa").subscribe({ issue ->
+        val disposable = videoDetailModel.requestRelatedData(id).subscribe({ issue ->
             mRootView?.apply {
                 dismissLoading()
-//                setRecentRelatedVideo(issue.)
+                val list = issue.ret.list;
+                if (list!!.size >= 1) {
+                    setRecentRelatedVideo(issue.ret.list.get(0).childList as ArrayList<VideoDetailBean.Ret.X.Child>);
+                }
                 setVideo(issue.ret.smoothURL)
             }
         }, { t ->
@@ -36,7 +38,7 @@ class VideoDetailPresenter : BasePresenter<VideoDetailContract.View>(), VideoDet
                 setErrorMsg(ExceptionHandle.handleException(t))
             }
         })
-
+        addSubscription(disposable)
     }
 
     private val videoDetailModel: VideoDetailModel by lazy {
